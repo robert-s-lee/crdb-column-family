@@ -12,4 +12,4 @@ cd ~/gitHub/crdb-column-family/
 Rscript crdb-column-family.R
 ```
 
-Shoud produce [graph](crdb-column-family.pdf)
+Shoud produce ![graph](crdb-column-family.png)
