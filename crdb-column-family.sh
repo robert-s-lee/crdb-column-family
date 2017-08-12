@@ -14,7 +14,7 @@ find $BIN -name "cockroach-*-amd64" | while read dir; do
 
   sleep 10
   cockroach version
-  cockroach sql --insecure -e "create database md"
+  cockroach sql --insecure -e "create database md; set cluster setting rocksdb.min_wal_sync_interval='0ms';"
 
   rm x.csv
   ~/bin/apache-jmeter-3.2/bin/jmeter -n -t colfam-update-cr.jmx -l x.csv
@@ -27,6 +27,8 @@ find $BIN -name "cockroach-*-amd64" | while read dir; do
   pkill -9 cockroach
   rm -rf cockroach-data
 done
+
+rm x.csv
 
 test() {
   crdb=`netstat -an | grep -i listen | grep 26257 | wc -l`
